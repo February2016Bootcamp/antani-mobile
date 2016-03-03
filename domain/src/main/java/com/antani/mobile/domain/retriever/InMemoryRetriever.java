@@ -1,6 +1,7 @@
 package com.antani.mobile.domain.retriever;
 
-import java.util.ArrayList;
+import com.antani.mobile.domain.Course;
+
 import java.util.List;
 
 /**
@@ -8,14 +9,14 @@ import java.util.List;
  */
 public class InMemoryRetriever implements Retriever {
 
-    private List<String> courses;
+    private List<Course> courses;
 
     @Override
-    public List<String> retrieveCourse() {
+    public List<Course> retrieveCourse() {
         return courses;
     }
 
-    public InMemoryRetriever(List<String> courses) {
+    public InMemoryRetriever(List<Course> courses) {
         this.courses = courses;
     }
 }

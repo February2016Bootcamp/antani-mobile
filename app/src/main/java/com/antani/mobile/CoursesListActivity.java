@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.antani.mobile.domain.Course;
 import com.antani.mobile.domain.CoursesListView;
 import com.antani.mobile.domain.retriever.InMemoryRetriever;
 import com.antani.mobile.domain.services.ShowCourses;
@@ -18,7 +19,7 @@ public class CoursesListActivity extends AppCompatActivity implements CoursesLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses_list);
 
-        List<String> courses = Arrays.asList("pippo", "pluto", "ordine 3");
+        List<Course> courses = Arrays.asList(new Course("pippo"), new Course("pluto"), new Course("ordine 3"));
         InMemoryRetriever retriever = new InMemoryRetriever(courses);
 
         ShowCourses showCourses = new ShowCourses(retriever, this);
@@ -26,10 +27,10 @@ public class CoursesListActivity extends AppCompatActivity implements CoursesLis
     }
 
     @Override
-    public void show(List<String> courses) {
+    public void show(List<Course> courses) {
         String message = "";
-        for (String course : courses) {
-             message += course;
+        for (Course course : courses) {
+             message += course.getTitle() + "\n";
         }
         Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }

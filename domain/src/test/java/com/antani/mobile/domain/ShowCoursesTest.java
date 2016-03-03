@@ -52,16 +52,16 @@ public class ShowCoursesTest {
 
     @Test
     public void showCourses() throws Exception {
-        List<String> courses = getManyCourseList(3);
+        List<Course> courses = getManyCourseList(3);
         when(retriever.retrieveCourse()).thenReturn(courses);
         showCourses.showCourses();
         verify(coursesListView).show(courses);
     }
 
-    private ArrayList getManyCourseList(int times) {
+    private ArrayList<Course> getManyCourseList(int times) {
         ArrayList courses = new ArrayList();
         for (int i = 0; i < times; i++) {
-            courses.add("a course " + i);
+            courses.add(new Course("a course " + i));
         }
         return courses;
     }
