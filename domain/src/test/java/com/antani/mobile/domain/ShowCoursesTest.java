@@ -2,7 +2,7 @@ package com.antani.mobile.domain;
 
 import com.antani.mobile.domain.retriever.InMemoryRetriever;
 import com.antani.mobile.domain.retriever.Retriever;
-import com.antani.mobile.domain.services.CoursesService;
+import com.antani.mobile.domain.services.ShowCourses;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,15 +15,15 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class CoursesServiceTest {
+public class ShowCoursesTest {
 
     private Retriever retriever;
-    private CoursesService service;
+    private ShowCourses service;
 
     @Before
     public void setUp() throws Exception {
         retriever = Mockito.mock(Retriever.class);
-        service = new CoursesService(retriever);
+        service = new ShowCourses(retriever);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class CoursesServiceTest {
 
     @Test
     public void retrieveCoursesFromMemory() throws Exception {
-        service = new CoursesService(new InMemoryRetriever(getManyCourseList(3)));
+        service = new ShowCourses(new InMemoryRetriever(getManyCourseList(3)));
         assertThat(3, is(service.getCourses().size()));
     }
 

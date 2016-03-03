@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * Created by fgiovinazzo on 03/03/16.
  */
-public class CoursesService {
+public class ShowCourses {
 
     private Retriever retriever;
 
-    public CoursesService(Retriever retriever) {
+    public ShowCourses(Retriever retriever) {
         this.retriever = retriever;
     }
 
