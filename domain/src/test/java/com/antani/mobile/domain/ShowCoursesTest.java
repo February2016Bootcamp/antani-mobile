@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -34,20 +32,22 @@ public class ShowCoursesTest {
     @Test
     public void getEmptyCoursesList() throws Exception {
         when(retriever.retrieveCourse()).thenReturn(Collections.EMPTY_LIST);
-        List<String> courses = showCourses.getCourses();
-        assertThat(courses.isEmpty(), is(true));
+        showCourses.showCourses();
+        verify(coursesListView).show(Collections.EMPTY_LIST);
     }
 
     @Test
     public void callCollaboratorToRetrieveCourses() throws Exception {
-        showCourses.getCourses();
+        showCourses.showCourses();
         Mockito.verify(retriever).retrieveCourse();
     }
 
     @Test
     public void retrieveCoursesFromMemory() throws Exception {
-        showCourses = new ShowCourses(new InMemoryRetriever(getManyCourseList(3)));
-        assertThat(3, is(showCourses.getCourses().size()));
+        ArrayList courses = getManyCourseList(3);
+        showCourses = new ShowCourses(new InMemoryRetriever(courses),coursesListView);
+        showCourses.showCourses();
+        verify(coursesListView).show(courses);
     }
 
     @Test

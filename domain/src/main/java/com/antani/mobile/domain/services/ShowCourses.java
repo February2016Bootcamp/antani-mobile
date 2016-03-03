@@ -14,17 +14,9 @@ public class ShowCourses {
     private Retriever retriever;
     private CoursesListView coursesListView;
 
-    public ShowCourses(Retriever retriever) {
-        this.retriever = retriever;
-    }
-
     public ShowCourses(Retriever retriever, CoursesListView coursesListView) {
         this.retriever = retriever;
         this.coursesListView = coursesListView;
-    }
-
-    public List<String> getCourses() {
-        return retriever.retrieveCourse();
     }
 
     public void showCourses() {
