@@ -30,3 +30,9 @@ proguard/
 
 # Android Studio captures folder
 captures/
+
+
+# Ignore dev specific files
+/local.properties
+/.idea/
+.DS_Store
