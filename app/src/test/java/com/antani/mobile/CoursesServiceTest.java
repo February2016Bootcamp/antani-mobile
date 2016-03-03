@@ -1,7 +1,5 @@
 package com.antani.mobile;
 
-import android.support.annotation.NonNull;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -46,7 +44,6 @@ public class CoursesServiceTest {
         verify(retriever).retrieveCourse();
     }
 
-    @NonNull
     private ArrayList getOneCourseList() {
         ArrayList courses = new ArrayList();
         courses.add("a course");
