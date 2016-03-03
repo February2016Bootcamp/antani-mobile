@@ -1,4 +1,6 @@
-package com.antani.mobile.domain;
+package com.antani.mobile.domain.services;
+
+import com.antani.mobile.domain.retriever.Retriever;
 
 import java.util.List;
 

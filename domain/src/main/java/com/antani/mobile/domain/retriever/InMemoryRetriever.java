@@ -1,4 +1,4 @@
-package com.antani.mobile.domain;
+package com.antani.mobile.domain.retriever;
 
 import java.util.List;
 
