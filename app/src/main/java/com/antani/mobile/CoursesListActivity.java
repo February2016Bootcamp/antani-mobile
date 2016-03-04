@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import com.antani.mobile.adapter.RestRepository;
-import com.antani.mobile.domain.Course;
-import com.antani.mobile.domain.CoursesListView;
-import com.antani.mobile.domain.services.ShowCourses;
+import com.antani.mobile.adapter.delivery.DatePresenter;
+import com.antani.mobile.adapter.delivery.PricePresenter;
+import com.antani.mobile.adapter.repository.RestRepository;
+import com.antani.mobile.domain.entities.Course;
+import com.antani.mobile.domain.views.CoursesListView;
+import com.antani.mobile.domain.interactors.ShowCourses;
 
 import java.util.List;
 
@@ -20,10 +22,8 @@ public class CoursesListActivity extends AppCompatActivity implements CoursesLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses_list);
-
-        courseList = (ListView)findViewById(R.id.course_list);
-
         setTitle("Lista Corsi");
+        courseList = (ListView)findViewById(R.id.course_list);
 
         new CoursesDownloader().execute();
     }
@@ -36,7 +36,7 @@ public class CoursesListActivity extends AppCompatActivity implements CoursesLis
         }
         runOnUiThread(new Runnable() {
             public void run() {
-                courseList.setAdapter(new CoursesAdapter(CoursesListActivity.this, courses));
+                courseList.setAdapter(new CoursesAdapter(CoursesListActivity.this, courses, new DatePresenter(), new PricePresenter()));
             }
         });
     }

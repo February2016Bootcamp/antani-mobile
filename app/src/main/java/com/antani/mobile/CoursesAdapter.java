@@ -7,10 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.antani.mobile.domain.Course;
+import com.antani.mobile.adapter.delivery.DatePresenter;
+import com.antani.mobile.adapter.delivery.PricePresenter;
+import com.antani.mobile.domain.entities.Course;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +21,14 @@ public class CoursesAdapter extends BaseAdapter {
 
     private Context context;
     private final List<Course> courses;
+    private DatePresenter datePresenter;
+    private PricePresenter pricePresenter;
 
-    public CoursesAdapter(Context context, List<Course> courses){
+    public CoursesAdapter(Context context, List<Course> courses, DatePresenter datePresenter, PricePresenter pricePresenter){
         this.context = context;
         this.courses = courses;
+        this.datePresenter = datePresenter;
+        this.pricePresenter = pricePresenter;
     }
 
     @Override
@@ -50,24 +57,22 @@ public class CoursesAdapter extends BaseAdapter {
         title.setText(course.getTitle());
 
         TextView price = (TextView)convertView.findViewById(R.id.course_price);
-        price.setText(String.format("%.2f €", course.getPrice() / 100.0f));
+        price.setText(pricePresenter.format(course.getPrice()));
 
         TextView date = (TextView)convertView.findViewById(R.id.course_date);
-        date.setText(getDate(course));
+        date.setText(datePresenter.format(getDate(course)));
 
         return convertView;
     }
 
-    private String getDate(Course course) {
+    private Date getDate(Course course) {
         SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        SimpleDateFormat readable = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        String dateStr = "";
+        Date date = Calendar.getInstance().getTime();
         try {
-            Date date = sfd.parse(course.getDateTime());
-            dateStr = readable.format(date);
+            date = sfd.parse(course.getDateTime());
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return dateStr;
+        return date;
     }
 }

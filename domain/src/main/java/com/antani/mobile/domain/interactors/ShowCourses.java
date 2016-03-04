@@ -1,17 +1,17 @@
-package com.antani.mobile.domain.services;
+package com.antani.mobile.domain.interactors;
 
-import com.antani.mobile.domain.CoursesListView;
-import com.antani.mobile.domain.retriever.Retriever;
+import com.antani.mobile.domain.views.CoursesListView;
+import com.antani.mobile.domain.repositories.Repository;
 
 /**
  * Created by fgiovinazzo on 03/03/16.
  */
 public class ShowCourses {
 
-    private Retriever retriever;
+    private Repository retriever;
     private CoursesListView coursesListView;
 
-    public ShowCourses(Retriever retriever, CoursesListView coursesListView) {
+    public ShowCourses(Repository retriever, CoursesListView coursesListView) {
         this.retriever = retriever;
         this.coursesListView = coursesListView;
     }

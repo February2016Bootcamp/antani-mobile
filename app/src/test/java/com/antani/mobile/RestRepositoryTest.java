@@ -1,7 +1,7 @@
 package com.antani.mobile;
 
-import com.antani.mobile.adapter.RestRepository;
-import com.antani.mobile.domain.retriever.Retriever;
+import com.antani.mobile.adapter.repository.RestRepository;
+import com.antani.mobile.domain.repositories.Repository;
 
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class RestRepositoryTest {
 
     @Test
     public void listCoursesFromRestService() throws Exception {
-        Retriever restRepository = new RestRepository();
+        Repository restRepository = new RestRepository();
         assertTrue(restRepository.retrieveCourse().size() >= 0);
     }
 

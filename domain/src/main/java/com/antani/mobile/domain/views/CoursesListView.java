@@ -1,4 +1,6 @@
-package com.antani.mobile.domain;
+package com.antani.mobile.domain.views;
+
+import com.antani.mobile.domain.entities.Course;
 
 import java.util.List;
 

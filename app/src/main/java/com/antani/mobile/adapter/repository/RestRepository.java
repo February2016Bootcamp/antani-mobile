@@ -1,7 +1,7 @@
-package com.antani.mobile.adapter;
+package com.antani.mobile.adapter.repository;
 
-import com.antani.mobile.domain.Course;
-import com.antani.mobile.domain.retriever.Retriever;
+import com.antani.mobile.domain.entities.Course;
+import com.antani.mobile.domain.repositories.Repository;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,7 +11,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
-public class RestRepository implements Retriever {
+public class RestRepository implements Repository {
     @Override
     public List<Course> retrieveCourse() {
         Retrofit retrofit = new Retrofit.Builder()
