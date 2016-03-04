@@ -15,7 +15,7 @@ public class RestRepository implements Retriever {
     @Override
     public List<Course> retrieveCourse() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://antani-be-stub.herokuapp.com")
+                .baseUrl("http://antani-be.herokuapp.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         Service service = retrofit.create(Service.class);
