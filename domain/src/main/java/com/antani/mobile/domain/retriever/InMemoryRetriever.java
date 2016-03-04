@@ -11,12 +11,13 @@ public class InMemoryRetriever implements Retriever {
 
     private List<Course> courses;
 
+    public InMemoryRetriever(List<Course> courses) {
+        this.courses = courses;
+    }
+
     @Override
     public List<Course> retrieveCourse() {
         return courses;
     }
 
-    public InMemoryRetriever(List<Course> courses) {
-        this.courses = courses;
-    }
 }
