@@ -26,6 +26,11 @@ public class RestRepository implements Repository {
         }
     }
 
+    @Override
+    public boolean addPartecipant(String courseCode) {
+        return false;
+    }
+
     interface Service {
         @GET("courses")
         Call<List<Course>> getCourses();

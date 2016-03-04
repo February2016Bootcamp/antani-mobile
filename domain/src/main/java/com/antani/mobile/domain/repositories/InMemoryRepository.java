@@ -17,4 +17,9 @@ public class InMemoryRepository implements Repository {
         return courses;
     }
 
+    @Override
+    public boolean addPartecipant(String courseCode) {
+        return false;
+    }
+
 }

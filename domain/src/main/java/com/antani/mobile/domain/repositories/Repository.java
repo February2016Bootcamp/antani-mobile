@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface Repository {
     List<Course> retrieveCourse();
+
+    boolean addPartecipant(String courseCode);
 }
