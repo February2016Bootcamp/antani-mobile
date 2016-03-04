@@ -10,10 +10,13 @@ public class InMemoryRepository implements Repository {
 
     private List<Course> courses;
 
-    private Map<String,Integer> partecipantsMap = new HashMap();
+    private Map<String, Integer> participantsMap = new HashMap();
 
     public InMemoryRepository(List<Course> courses) {
         this.courses = courses;
+        for (Course course : this.courses) {
+            participantsMap.put(course.getCode(), 0);
+        }
     }
 
     @Override
@@ -22,13 +25,17 @@ public class InMemoryRepository implements Repository {
     }
 
     @Override
-    public boolean addPartecipant(String courseCode) {
-        int partecipants = partecipantsMap.get(courseCode)== null?0:partecipantsMap.get(courseCode);
-        partecipantsMap.put(courseCode,++partecipants);
-        return true;
+    public boolean addParticipant(String courseCode) {
+        if (participantsMap.containsKey(courseCode)) {
+            int partecipants = participantsMap.get(courseCode);
+            participantsMap.put(courseCode, ++partecipants);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public int getPartecipants(String s) {
-        return partecipantsMap.get(s) == null? 0 : partecipantsMap.get(s);
+    public int getParticipants(String s) {
+        return participantsMap.get(s) == null ? 0 : participantsMap.get(s);
     }
 }

@@ -11,7 +11,7 @@ public class Registration {
     }
 
     public boolean subscribe(String courseCode) {
-        
-        return repository.addPartecipant(courseCode);
+
+        return repository.addParticipant(courseCode);
     }
 }

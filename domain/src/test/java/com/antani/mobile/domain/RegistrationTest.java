@@ -30,20 +30,20 @@ public class RegistrationTest {
     @Test
     public void success() throws Exception {
 
-        when(repository.addPartecipant(anyString())).thenReturn(true);
+        when(repository.addParticipant(anyString())).thenReturn(true);
 
         assertThat( registration.subscribe("123"), is(true));
 
-        verify(repository, times(1)).addPartecipant(anyString());
+        verify(repository, times(1)).addParticipant(anyString());
     }
 
     @Test
     public void failure() throws Exception {
 
-        when(repository.addPartecipant(anyString())).thenReturn(false);
+        when(repository.addParticipant(anyString())).thenReturn(false);
 
         assertThat( registration.subscribe("456"), is(false));
 
-        verify(repository, times(1)).addPartecipant(anyString());
+        verify(repository, times(1)).addParticipant(anyString());
     }
 }

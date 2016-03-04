@@ -30,12 +30,15 @@ public class InMemoryRepositoryTest {
     @Test
     public void subscribe() throws Exception {
         InMemoryRepository repository= new InMemoryRepository(getManyCourseList(5));
-        assertThat(repository.getPartecipants("1"), is(0));
-        repository.addPartecipant("1");
+        assertThat(repository.getParticipants("1"), is(0));
+        repository.addParticipant("1");
+        assertThat(repository.getParticipants("1"), is(1));
+    }
 
-        assertThat(repository.getPartecipants("1"), is(1));
-
-
+    @Test
+    public void subscribeAtCourseThatNotExists() throws Exception {
+        InMemoryRepository repository= new InMemoryRepository(getManyCourseList(5));
+        assertThat(repository.addParticipant("6"), is(false));
     }
 
     private ArrayList<com.antani.mobile.domain.entities.Course> getManyCourseList(int times) {

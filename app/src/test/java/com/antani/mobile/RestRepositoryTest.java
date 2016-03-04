@@ -16,4 +16,9 @@ public class RestRepositoryTest {
         assertTrue(restRepository.retrieveCourse().size() >= 0);
     }
 
+    @Test
+    public void subscribe() throws Exception {
+        RestRepository restRepository = new RestRepository();
+        assertTrue(restRepository.addParticipant("02"));
+    }
 }

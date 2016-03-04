@@ -10,6 +10,8 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public class RestRepository implements Repository {
     @Override
@@ -27,12 +29,23 @@ public class RestRepository implements Repository {
     }
 
     @Override
-    public boolean addPartecipant(String courseCode) {
-        return false;
+    public boolean addParticipant(String courseCode) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://antani-be.herokuapp.com")
+                .build();
+        Service service = retrofit.create(Service.class);
+        try {
+            return service.subscribeCourse(courseCode).execute().isSuccess();
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     interface Service {
         @GET("courses")
         Call<List<Course>> getCourses();
+
+        @POST("courses/{code}/participants")
+        Call<Void> subscribeCourse(@Path("code") String code);
     }
 }
